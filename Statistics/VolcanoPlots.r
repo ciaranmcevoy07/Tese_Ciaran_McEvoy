@@ -145,5 +145,5 @@ p6 <- ggplot(data = df_cn_ad_LC, aes(x = log2FC, y = -log10(p_value), col = diff
     geom_text_repel(max.overlaps = Inf)
 
 #############################
-print(p3)
+print(p6)
 
