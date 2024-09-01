@@ -81,7 +81,7 @@ outliers <- which(z_scores_pc1 > 3 | z_scores_pc2 > 3)
 
 # Print the rows that are outliers
 # print(nrow(table[outliers, ]))
-print(outliers)
+# print(outliers)
 
 #---------------------------------------------------------------------------------
 #Com Labels
@@ -108,14 +108,16 @@ print(outliers)
 # print(p)
 #---------------------------------------------------------------------------
 #Sem labels
-# pca_scores$outlier <- "No"
-# pca_scores$outlier[outliers] <- "Yes"
+pca_scores$outlier <- "No"
+pca_scores$outlier[outliers] <- "Yes"
 
 
-# ggplot(pca_scores, aes(x = PC1, y = PC2, color = outlier)) +
-#   geom_point(alpha = 0.7) +
-#   scale_color_manual(values = c("No" = "blue", "Yes" = "red")) +
-#   labs(title = "PCA - Outlier Detection",
-#        x = "Principal Component 1",
-#        y = "Principal Component 2") +
-#   theme_minimal()
+p <- ggplot(pca_scores, aes(x = PC1, y = PC2, color = outlier)) +
+  geom_point(alpha = 0.7) +
+  scale_color_manual(values = c("No" = "blue", "Yes" = "red")) +
+  labs(title = "PCA - Outlier Detection",
+       x = "PC1",
+       y = "PC2") +
+  theme_minimal()
+
+print(p)
