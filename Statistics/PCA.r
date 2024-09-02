@@ -6,11 +6,13 @@ library(factoextra)
 library(ggplot2)
 
 dataset <- read.csv("Statistics/test/TempDatasetPro10.csv")
+print(nrow(dataset))
 
 ############ PCA Analysis for all Subjects #####################
 
 filtered_data <- dataset %>%
   filter(!(Group == "MCI" & Age > 70))
+print(nrow(filtered_data))
 
 table <- filtered_data[, 1046:1080]
 # table <- dataset[, 1046:1080]
@@ -108,16 +110,16 @@ outliers <- which(z_scores_pc1 > 3 | z_scores_pc2 > 3)
 # print(p)
 #---------------------------------------------------------------------------
 #Sem labels
-pca_scores$outlier <- "No"
-pca_scores$outlier[outliers] <- "Yes"
+# pca_scores$outlier <- "No"
+# pca_scores$outlier[outliers] <- "Yes"
 
 
-p <- ggplot(pca_scores, aes(x = PC1, y = PC2, color = outlier)) +
-  geom_point(alpha = 0.7) +
-  scale_color_manual(values = c("No" = "blue", "Yes" = "red")) +
-  labs(title = "PCA - Outlier Detection",
-       x = "PC1",
-       y = "PC2") +
-  theme_minimal()
+# p <- ggplot(pca_scores, aes(x = PC1, y = PC2, color = outlier)) +
+#   geom_point(alpha = 0.7) +
+#   scale_color_manual(values = c("No" = "blue", "Yes" = "red")) +
+#   labs(title = "PCA - Outlier Detection",
+#        x = "PC1",
+#        y = "PC2") +
+#   theme_minimal()
 
-print(p)
+# print(p)
