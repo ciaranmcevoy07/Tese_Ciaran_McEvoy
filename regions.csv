@@ -30,7 +30,6 @@ rh_superiortemporal_volume,x
 rh_supramarginal_volume,x
 rh_transversetemporal_volume,x
 rh_insula_volume,x
-rh_temporalpole_volume,x
 lh_caudalanteriorcingulate_volume,x
 lh_caudalmiddlefrontal_volume,x
 lh_cuneus_volume,x
@@ -62,7 +61,6 @@ lh_superiortemporal_volume,x
 lh_supramarginal_volume,x
 lh_transversetemporal_volume,x
 lh_insula_volume,x
-lh_frontalpole_volume,x
 Left-Lateral-Ventricle,
 Left-Inf-Lat-Vent,
 Left-Cerebellum-White-Matter,x

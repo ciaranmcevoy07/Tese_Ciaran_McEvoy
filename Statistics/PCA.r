@@ -4,18 +4,18 @@ library("FactoMineR")
 library('corrr')
 library(factoextra)
 library(ggplot2)
+library(ggfortify)
 
 dataset <- read.csv("Statistics/test/TempDatasetPro10.csv")
-print(nrow(dataset))
 
 ############ PCA Analysis for all Subjects #####################
 
-filtered_data <- dataset %>%
-  filter(!(Group == "MCI" & Age > 70))
-print(nrow(filtered_data))
+# filtered_data <- dataset %>%
+#   filter(!(Group == "MCI" & Age > 70))
+# print(nrow(filtered_data))
 
-table <- filtered_data[, 1046:1080]
-# table <- dataset[, 1046:1080]
+# table <- filtered_data[, 1046:1080]
+table <- dataset[, 1046:1080]
 
 ############ PCA Analysis for AD Subjects #####################
 
@@ -37,6 +37,7 @@ table <- filtered_data[, 1046:1080]
 data.pca <- princomp(table)
 data.pca$loadings[, 1:2]
 
+
 # print(fviz_eig(data.pca, addlabels = TRUE))
 # fviz_pca_var(data.pca, col.var="contrib")+
 #  scale_color_gradient2(low="white", mid="blue",
@@ -46,14 +47,14 @@ data.pca$loadings[, 1:2]
 # print(fviz_pca_var(data.pca, col.var = "cos2",
 #             gradient.cols = c("black", "orange", "green"),
 #             repel = TRUE))
-# print(fviz_pca_ind(data.pca, label="none", habillage=filtered_data$Group,
-#         addEllipses=TRUE, ellipse.level=0.30, select.ind = list(cos2 =100)) + labs(title ="PCA", x = "PC1", y = "PC2"))
+p <- fviz_pca_ind(data.pca, label="none", habillage=dataset$Group,
+        addEllipses=TRUE, ellipse.level=0.15, select.ind = list(cos2 =200)) + labs(title ="PCA", x = "PC1", y = "PC2")
 
 # Create the PCA biplot and save to a file
 # p <- fviz_pca_biplot(data.pca, 
 #                 # Individuals
 #                 geom.ind = "point",
-#                 fill.ind = filtered_data$Group, col.ind = "black",
+#                 fill.ind = dataset$Group, col.ind = "black",
 #                 pointshape = 21, pointsize = 2,
 #                 palette = "jco",
 #                 addEllipses = TRUE,
@@ -68,18 +69,19 @@ data.pca$loadings[, 1:2]
 #                                     alpha = "Contrib")
 #                 )
 
+###############################################################################################################
 # Save the plot
 # ggsave("PCA.pdf", plot = p, width = 10, height = 15, limitsize = FALSE)
 
-pca_result <- prcomp(table, center = TRUE, scale. = TRUE)
+# pca_result <- prcomp(table, center = TRUE, scale. = TRUE)
 
-pca_scores <- as.data.frame(pca_result$x)
+# pca_scores <- as.data.frame(pca_result$x)
 
-z_scores_pc1 <- abs(scale(pca_scores$PC1))
-z_scores_pc2 <- abs(scale(pca_scores$PC2))
+# z_scores_pc1 <- abs(scale(pca_scores$PC1))
+# z_scores_pc2 <- abs(scale(pca_scores$PC2))
 
-# Define a threshold for identifying outliers (e.g., Z-score > 3)
-outliers <- which(z_scores_pc1 > 3 | z_scores_pc2 > 3)
+# # Define a threshold for identifying outliers (e.g., Z-score > 3)
+# outliers <- which(z_scores_pc1 > 3 | z_scores_pc2 > 3)
 
 # Print the rows that are outliers
 # print(nrow(table[outliers, ]))
@@ -123,3 +125,5 @@ outliers <- which(z_scores_pc1 > 3 | z_scores_pc2 > 3)
 #   theme_minimal()
 
 # print(p)
+
+ggsave("Pics/test.pdf", plot = p, width = 10, height = 15, limitsize = FALSE)

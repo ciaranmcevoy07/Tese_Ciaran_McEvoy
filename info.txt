@@ -1,0 +1,11 @@
+Dataset Versions:
+
+Version 11: Change normalized lipid values from percentages to ratios
+Version 12: Error Columns removed
+
+
+
+
+General Info:
+Error Columns:  -rh_temporalpole_volume
+                -lh_frontalpole_volume
