@@ -6,7 +6,7 @@ library(factoextra)
 library(ggplot2)
 library(ggfortify)
 
-dataset <- read.csv("Statistics/test/TempDatasetPro10.csv")
+dataset <- read.csv("DatasetPro13.0.csv")
 
 ############ PCA Analysis for all Subjects #####################
 
@@ -15,25 +15,26 @@ dataset <- read.csv("Statistics/test/TempDatasetPro10.csv")
 # print(nrow(filtered_data))
 
 # table <- filtered_data[, 1046:1080]
-table <- dataset[, 1046:1080]
+table <- dataset[, 1042:1076]
+dataset$Group <- gsub("LMCI|EMCI|SMC", "MCI", dataset$Group)
 
 ############ PCA Analysis for AD Subjects #####################
 
 # filtered_dataset <- dataset[dataset$Group == 'AD', ]
 # table <- filtered_dataset[, 1046:1080]
 
-############ PCA Analysis for CN Subjects #####################
+# ########### PCA Analysis for CN Subjects #####################
 
 # filtered_dataset <- dataset[dataset$Group == 'CN', ]
 # table <- filtered_dataset[, 1046:1080]
 
-############ PCA Analysis for MCI Subjects #####################
+# ########### PCA Analysis for MCI Subjects #####################
 
 # values_to_filter <- c('MCI', 'LMCI', 'EMCI', 'SMC')
 # filtered_dataset <- dataset[dataset$Group %in% values_to_filter, ]
 # table <- filtered_dataset[, 1046:1080]
 
-####################################################################
+# ###################################################################
 data.pca <- princomp(table)
 data.pca$loadings[, 1:2]
 

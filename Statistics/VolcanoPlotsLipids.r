@@ -145,6 +145,6 @@ p6 <- ggplot(data = df_cn_ad_LC, aes(x = log2FC, y = -log10(p_value), col = diff
     geom_text_repel(max.overlaps = Inf)
 
 #############################
-ggsave("Pics/VolcanoPlot_LC_CNvsAD.pdf", plot = p6, width = 10, height = 15, limitsize = FALSE)
+ggsave("Pics/test.pdf", plot = p6, width = 10, height = 15, limitsize = FALSE)
 # print(p6)
 
